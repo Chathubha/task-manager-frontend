@@ -6,14 +6,14 @@ function App() {
   const [taskText, setTaskText] = useState("");
   const API_URL = "http://localhost:5000/tasks";
 
-  // fetch tasks on load
+  // fetch task on load
   useEffect(() => {
     axios.get(API_URL)
       .then(res => setTasks(res.data))
       .catch(err => console.error(err));
   }, []);
 
-  // add task
+  // add tasks
   const handleAddTask = () => {
     if (!taskText.trim()) return;
     axios.post(API_URL, { text: taskText })
@@ -29,7 +29,7 @@ function App() {
       .catch(err => console.error(err));
   };
 
-  // delete task
+  // delete tasks
   const handleDelete = (id) => {
     axios.delete(`${API_URL}/${id}`)
       .then(() => setTasks(tasks.filter(t => t.id !== id)))
